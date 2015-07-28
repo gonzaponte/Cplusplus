@@ -5,55 +5,44 @@
  *
  *
  *    @ Author: Gonzalo Martínez Lema
- *    @ Date: 31/01/2015
+ *    @ Date: 22/07/2015
  *
  *
  *
  */
-#include "Array.h"
 
-Vector::Vector()
+#include "Vector.h"
+
+template< class T >
+glib::Vector<T>::Vector( T values[], int size ) : std::vector<T>( values, values + size )
+{}
+
+template< class T >
+glib::Vector<T> glib::Vector<T>::Concatenate( const glib::Vector<T>& V ) const
 {
-    _values = 0;
-    _size = 0;
+  glib::Vector<T> W(*this);
+  for (int i=0; i<V.size(); i++) W.push_back( V[i] );
+  return W;
 }
 
-Vector::Vector( T* values, int size )
+template< class T >
+void glib::Vector<T>::Remove( T value )
 {
-    _values = new T[size];
-    for (int i=0; i<size; i++) _values[i] = T(values[i]);
-    _size = size;
+  for( int i = this->Last(); i>=0; i-- )
+    if ( (*this)[i] == value )
+      this->erase(i);
 }
 
-Vector::Vector( T value, int size )
+template< class T >
+std::ostream& operator <<( std::ostream& os, const glib::Vector<T>& V )
 {
-    _values = new int[size];
-    _size = size;
+  for ( int i=0; i<V.size(); i++ )
+    os << i << " -> " << V[i] << std::endl;
+  return os;
 }
 
-Vector::Vector( Vector V )
+template< class T >
+std::ostream& operator <<( std::ostream& os, const glib::Vector<T>* V )
 {
-    this = V.Copy()
-}
-
-Vector::Vector( Vector* V )
-{
-    this = V->Copy()
-}
-
-Vector::~Vector()
-{
-    delete _values;
-    delete &_size;
-}
-
-T* GetValues();
-T* GetSlice();
-Vector* Copy();
-};
-
-
-template <class A_Type> A_Type calc<A_Type>::multiply(A_Type x,A_Type y)
-{
-    return x*y;
+  return os << (*V);
 }
