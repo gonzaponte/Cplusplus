@@ -5,17 +5,13 @@
  *
  *    @ Author: Gonzalo Martínez Lema
  *    @ Date: 22/07/2015
- *    @ version: 0.0
- *    @ Last update: 22/07/2015
+ *    @ version: 0.1
+ *    @ Last update: 10/07/2016
  *
  */
 
 #ifndef __GVECTOR__
 #define __GVECTOR__
-
-#if __cplusplus < 201103L
-#error "This code must be compiled with -std=c++0x or above"
-#endif
 
 #include <iostream>
 #include <stdexcept>
@@ -25,7 +21,7 @@
 #include <cmath>
 #include <iterator>
 
-//#include "Matrix.h"
+#include "GLIB.h"
 
 namespace glib{
 
