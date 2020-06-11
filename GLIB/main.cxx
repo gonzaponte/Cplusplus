@@ -3,12 +3,11 @@
 int main(void)
 {
   std::cout << "HOLA" << std::endl;
-  int s   = 10;
+  unsigned int s = 10;
   int x[] = {0,1,2,3,4,5,6,7,8,9};
   glib::Vector<int> a( s, x );
   glib::Vector<int> b( s, 2 );
   glib::Vector<int> c = a;// + 5;
-  glib::Vector<int> d;
 
   std::cout << "a:                  " << a                  << std::endl;
   std::cout << "b:                  " << b                  << std::endl;
@@ -32,5 +31,15 @@ int main(void)
   std::cout << "b.Mod2():           " << b.Mod2()           << std::endl;
   std::cout << "b.Dot(b):           " << b.Dot(b)           << std::endl;
   std::cout << "b.Slice(0,1).Pop(): " << b.Slice(0,1).Pop() << std::endl;
+
+  unsigned int nr = 4, nc = 4;
+  int m[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
+  glib::Vector<int> d( nr, nc, 5 );
+  glib::Vector<int> e( nr, nc, m );
+  glib::Vector<int> f = a;// + 5;
+  glib::Vector<int> d;
+
+
+
   return 0;
 }
